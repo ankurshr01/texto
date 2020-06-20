@@ -1,0 +1,14 @@
+<html>
+    {% load static %}
+    <body>
+        <form method="POST" action="../enterroomnumber">
+            {% csrf_token %}
+            {{ form }}
+            
+            {{ forms }}
+            
+            <button type="submit">Enter</button>
+        </form>
+
+    </body>
+</html>

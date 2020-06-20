@@ -1,0 +1,9 @@
+<html>
+    <body>
+        <form method="POST" action="../createusername">
+            {% csrf_token %}
+            {{forms}}
+            <button type="submit">Enter Room</button>
+        </form>
+    </body>
+</html>

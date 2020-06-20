@@ -1,0 +1,11 @@
+<html>
+    <body>
+
+    <form action='showchat' method='POST'>
+        {% csrf_token %}
+            {{dtr.as_p}}
+        <button type="submit">submit</button>
+    </form>        
+
+    </body>
+</html>
