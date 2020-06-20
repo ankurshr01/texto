@@ -1,9 +1,22 @@
 <html>
     <body>
 
+    <div>
+
+        {% for chats in messa.all %}
+
+            {{chats.chatroom}}
+
+        {% endfor %}
+
+    </div>
+
+
+
+
     <form method='POST' action="showchat">
         {% csrf_token %}
-            {{dtr.as_p}}
+        {{dtr.as_p}}
         <button type="submit">submit</button>
     </form>        
 
