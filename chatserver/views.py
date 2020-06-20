@@ -28,20 +28,41 @@ def first(request):
     }
     return render(request,'home.html', context)
 
-rom=""
+
+# def enterroomnumber(request):
+#     if request.method == "POST":
+#         form = roomenter(data=request.POST)
+#         forms=name(data=request.POST)
+#         if forms.is_valid() and form.is_valid(): 
+#             roomid=form.cleaned_data['room_name']
+#             room=roomId.objects.get_or_create(room_name=roomid)
+#             user=forms.cleaned_data['usernames']
+#             usr=username.objects.get_or_create(usernames=user)
+#             dtr=chatmsg(request.POST)
+#             request.session['user'] = user
+#             request.session['roomid'] = roomid
+#             context={
+#                 'usr' : usr,
+#                 'room' : room,
+#                 'forms' : forms,
+#                 'user' : user,
+#                 'dtr' : dtr
+#             }
+#             return render(request,'chatroom.html',context)
 
 def enterroomnumber(request):
     if request.method == "POST":
         form = roomenter(data=request.POST)
         forms=name(data=request.POST)
+        context={}
         if forms.is_valid() and form.is_valid(): 
             roomid=form.cleaned_data['room_name']
-            rom=roomid
             room=roomId.objects.get_or_create(room_name=roomid)
             user=forms.cleaned_data['usernames']
             usr=username.objects.get_or_create(usernames=user)
             dtr=chatmsg(request.POST)
-            rom=roomid
+            request.session['user'] = user
+            request.session['roomid'] = roomid
             context={
                 'usr' : usr,
                 'room' : room,
@@ -49,24 +70,21 @@ def enterroomnumber(request):
                 'user' : user,
                 'dtr' : dtr
             }
-            return render(request,'chatroom.html',context)
+        return render(request,'chatroom.html',context)
+
 
 
 def showchat(request):
     if request.method == 'POST':
-        users=name(data=request.POST)
-        form = chatmsg(data=request.POST)
-        usr = roomenter(data=request.POST)
-        print(rom)
+        form = chatmsg(request.POST)
         if form.is_valid(): 
             mess=form.cleaned_data['chatroom']
-            # use=users.cleaned_data['usernames']
-            # print(use)
-
-            msg=chatid.objects.create(chatroom=form)
-
-            msg.save()  
+            user=request.session['user']
+            roomid=request.session['roomid']
+            lop=username.objects.get(usernames=user)
+            pol=roomId.objects.get(room_name=roomid)
+            print(user)
+            print(roomid)
+            msg=chatid.objects.create(chatroom=mess,chatter=lop,roomname=pol)
+            msg.save()
             return render(request,'chatroom.html')
-
-    
-

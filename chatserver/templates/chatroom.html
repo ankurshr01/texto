@@ -1,7 +1,7 @@
 <html>
     <body>
 
-    <form action='showchat' method='POST'>
+    <form method='POST' action="showchat">
         {% csrf_token %}
             {{dtr.as_p}}
         <button type="submit">submit</button>

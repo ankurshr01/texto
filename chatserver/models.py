@@ -12,16 +12,15 @@ class username(models.Model):
 
 class roomId(models.Model):
     room_name=models.TextField(max_length=100, default="-none-", help_text="Enter room number")
-    
+
     def __str__(self):
         return self.room_name
 
 class chatid(models.Model):
-    chatroom=models.TextField(max_length=100)
+    chatroom=models.CharField(max_length=10000)
     chatter = models.ForeignKey(username, on_delete=models.SET_NULL, null=True)
     roomname=models.ForeignKey(roomId, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.chatroom
-
 
