@@ -1,20 +1,56 @@
 <html>
-  {% load static %}
+<body>
+  {{mess}}
   {% for chats in mes.all %}
-  <div id="chatt">
-      {{chats.chatter }}
+  {%with s=chats.chatter%}
+  {%with st=usr%}
+  {% if usr == chats.chatter %}
+  <div id="chattt">
+      <span class="col">{{chats.chatter}}</span>
       <br> 
       {{ chats.chatroom }}
   </div>
-  {% endfor %}
-
+  {% else %}
+  <div id="chatt">
+    <span class="col">{{chats.chatter}}</span>
+      <br> 
+      {{ chats.chatroom }}
+  </div>
+  {% endif %}
+  {%endwith%}
+  {%endwith%}
+  <br>
+ {% endfor %}
+</body>
   <style>
     #chatt{
-      padding: 10px;
+      word-wrap: break-word;
+      display: inline-block;
+      padding: 5;
+      padding-right: 20px;
+      padding-left: 20px;
+      max-width: 70%;
       background-color: aquamarine;
       margin-top: 10px;
       margin-bottom: 10px;
       border-radius: 10px;
+      margin-left: 30px;
+      color: black;
+
+    }
+    .col{
+      color: darkgoldenrod;
+      font-weight: bold;
+    }
+    #chattt{
+      padding: 10px;
+      background-color: white;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      color: black;
+      word-wrap: break-word;
+      display: inline-block;
     }
   </style>
 </html>

@@ -71,6 +71,7 @@ def showing_chat(request):
             siz=0
             messa=chatid.objects.filter(roomname=pol)
             context={
+                'mess' : mess,
                 'messa' : messa,
                 'dtr' : dtr,
                 'siz' : siz
@@ -98,7 +99,9 @@ def showchat(request):
     roomid=request.session['roomid']
     pol=roomId.objects.get(room_name=roomid)
     mes=chatid.objects.filter(roomname=pol)
+    usr=request.session['user']
     context={
+        'usr' : usr,
         'mes' : mes,
     }
     return render(request,'fetch.html',context)
