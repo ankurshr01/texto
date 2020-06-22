@@ -75,4 +75,13 @@ def showchat(request):
             dtr=chatmsg()
         return render(request,'chatroom.html',context)
 
-
+def refresh(request):
+    user=request.session['user']
+    roomid=request.session['roomid']
+    lop=username.objects.get(usernames=user)
+    pol=roomId.objects.get(room_name=roomid)
+    mes=chatid.objects.filter(roomname=pol)
+    context={
+        'mes' : mes
+    }
+    return render(request,'chatroom.html',context)

@@ -1,18 +1,35 @@
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+            var auto_refresh = setInterval(
+            function ()
+            {
+            $('#loader').load('{% url "refresh" %}').fadeIn("slow");
+            }, 3000);
+            console.log('this is my text', auto_refresh);
+
+            $( "#result" ).load( "ajax/test.html", function() {
+                 alert( "Load was performed." );
+            });
+
+            </script>
+    </head>
     <body>
 
-    <div>
+        <div id="pt">
+      
+        </div>
 
-        {% for chats in messa.all %}
-
-            {{chats.chatroom}}
-
+    <div id="loader">
+        {% for chats in mes.all %}
+        <div id="chatt">
+            jvdjwa
+            {{ chats.chatroom }}
+        </div>
         {% endfor %}
-
     </div>
-
-
-
 
     <form method='POST' action="showchat">
         {% csrf_token %}

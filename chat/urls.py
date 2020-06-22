@@ -17,5 +17,5 @@ urlpatterns = [
     path('',views.first, name='first'),
     path('enterroomnumber',views.enterroomnumber, name='enterroomnumber'),
     path('showchat',views.showchat,name='showchat'),
-
+    path('refresh',views.refresh,name='refresh')
 ]
