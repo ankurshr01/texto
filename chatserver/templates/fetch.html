@@ -1,5 +1,20 @@
 <html>
-{% for chat in mes.all %}
-  {{ chat.chatroom }}
-{% endfor %}
+  {% load static %}
+  {% for chats in mes.all %}
+  <div id="chatt">
+      {{chats.chatter }}
+      <br> 
+      {{ chats.chatroom }}
+  </div>
+  {% endfor %}
+
+  <style>
+    #chatt{
+      padding: 10px;
+      background-color: aquamarine;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+  </style>
 </html>

@@ -1,35 +1,65 @@
 <html>
+    {% load static %}
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/root.css">
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary/css/vocabulary.css">
+        <script type="text/javascript" src="https://unpkg.com/vue"></script>
+        <script type="text/javascript" src="https://unpkg.com/vue-i18n"></script>
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
         <script type="text/javascript">
             var auto_refresh = setInterval(
             function ()
             {
-                $('#loader').load('{% url "refresh" %}').fadeIn("slow");
+                $('#loader').load('{% url "showchat" %}').fadeIn("slow");
             }, 90);
         </script>
+        <script>
+        $(document).on('click','#send',function(e){
+            e.preventDefault()
+            $.ajax({
+                url:'{% url "chat_sender" %}',
+                data:{
+                    chat:$('#chatidd').val(),
+                },
+            });
+        });
+        </script>
     </head>
-    <body>
 
-        <div id="pt">
+    <body>
+        <div class="mid">
+        <div id="loader"></div>
+        <input type="text" id="chatidd" class="input" type="text" >
+        <input type="submit" value="send" id="send" class="input">
         </div>
-    <div id="loader">
-        {% with siz=mes|length %}
-        {% for chats in mes.all %}
-        <div id="chatt">
-            {{siz}}
-            {{ chats.chatroom }}
-        </div>
-        {% endfor %}
-        {% endwith %}
-    </div>
-    <form method='POST' action="showchat">
-        {% csrf_token %}
-        {{dtr.as_p}}
-        <button type="submit">submit</button>
-        
-    </form>        
+
 
     </body>
+
+    <style>
+        .input{
+            width: 70%;
+            margin-left: 100px;
+        }
+        .mid{
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+            background-image: url("{% static 'chatserver/wall.jpg' %}");
+        }
+        #loader{
+            width: 50%;
+            white-space: initial;
+            word-wrap: break-word;
+            padding: 30px;
+        }
+    </style>
+
+
 </html>

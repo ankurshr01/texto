@@ -17,5 +17,6 @@ urlpatterns = [
     path('',views.first, name='first'),
     path('enterroomnumber',views.enterroomnumber, name='enterroomnumber'),
     path('showchat',views.showchat,name='showchat'),
-    path('refresh',views.refresh,name='refresh')
+    path('showing_chat',views.showing_chat,name='showing_chat'),
+    path('chat_sender',views.chat_sender,name='chat_sender')
 ]

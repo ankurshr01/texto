@@ -18,6 +18,7 @@ from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from .forms import roomenter,name,chatmsg
 from .models import roomId,username,chatid
+from django.http import JsonResponse
 
 def first(request):
     form=roomenter(request.POST)
@@ -54,7 +55,7 @@ def enterroomnumber(request):
 
 
 
-def showchat(request):
+def showing_chat(request):
     if request.method == 'POST':
         form = chatmsg(data=request.POST)
         dtr=chatmsg()
@@ -77,13 +78,27 @@ def showchat(request):
             dtr=chatmsg()
         return render(request,'chatroom.html',context)
 
-def refresh(request):
+
+
+def chat_sender(request):
+    cht=chatid()
     user=request.session['user']
     roomid=request.session['roomid']
     lop=username.objects.get(usernames=user)
     pol=roomId.objects.get(room_name=roomid)
+    cht.chatroom=request.GET['chat']
+    cht.chatter=lop
+    cht.roomname=pol
+    cht.save()
+    return JsonResponse({'response':True},safe= False)
+
+
+    
+def showchat(request):
+    roomid=request.session['roomid']
+    pol=roomId.objects.get(room_name=roomid)
     mes=chatid.objects.filter(roomname=pol)
     context={
-        'mes' : mes
+        'mes' : mes,
     }
-    return render(request,'chatroom.html',context)
+    return render(request,'fetch.html',context)

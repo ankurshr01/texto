@@ -25,5 +25,7 @@ class chatmsg(forms.ModelForm):
     class Meta:
         model=chatid
         fields=['chatroom']
-    
+        widgets = {
+            'chatroom' : forms.TextInput(attrs={'id':'chatidd'})
+        }
 
