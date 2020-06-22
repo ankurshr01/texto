@@ -67,10 +67,12 @@ def showchat(request):
             pol=roomId.objects.get(room_name=roomid)
             msg=chatid.objects.create(chatroom=mess,chatter=lop,roomname=pol)
             msg.save()
+            siz=0
             messa=chatid.objects.filter(roomname=pol)
             context={
                 'messa' : messa,
-                'dtr' : dtr
+                'dtr' : dtr,
+                'siz' : siz
             }
             dtr=chatmsg()
         return render(request,'chatroom.html',context)

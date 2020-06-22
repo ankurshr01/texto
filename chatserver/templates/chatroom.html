@@ -6,35 +6,29 @@
             var auto_refresh = setInterval(
             function ()
             {
-            $('#loader').load('{% url "refresh" %}').fadeIn("slow");
-            }, 3000);
-            console.log('this is my text', auto_refresh);
-
-            $( "#result" ).load( "ajax/test.html", function() {
-                 alert( "Load was performed." );
-            });
-
-            </script>
+                $('#loader').load('{% url "refresh" %}').fadeIn("slow");
+            }, 90);
+        </script>
     </head>
     <body>
 
         <div id="pt">
-      
         </div>
-
     <div id="loader">
+        {% with siz=mes|length %}
         {% for chats in mes.all %}
         <div id="chatt">
-            jvdjwa
+            {{siz}}
             {{ chats.chatroom }}
         </div>
         {% endfor %}
+        {% endwith %}
     </div>
-
     <form method='POST' action="showchat">
         {% csrf_token %}
         {{dtr.as_p}}
         <button type="submit">submit</button>
+        
     </form>        
 
     </body>
