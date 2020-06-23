@@ -4,13 +4,14 @@
     
   </head>
 <body>
+  
   <div id="dit">
-  {% for ur in mes.all %}
-    {% ifchanged %}{{ur.chatter}}{% endifchanged %}  
-  {% endfor %}
-</div>
-
-
+    <span id="poll">Users:</span>
+    {% for ur in up.all %}
+      
+      {% ifchanged %}{{ur.chats}},{% endifchanged %}
+    {% endfor %}
+  </div>
   {% for chats in mes.all %}
   {% if request.session.user == chats.chatter|striptags %}
   <div class="message-box-holder">
@@ -18,8 +19,6 @@
       {{ chats.chatroom }}
     </div>
   </div>
-  <!-- <div id="chattt">
-  </div> -->
   {% else %}
   <div id="chatt">
       <span class="col"><i>{{chats.chatter}}</i></span>
@@ -31,6 +30,20 @@
  {% endfor %}
 </body>
   <style>
+    #poll{
+      font-size: 30px;
+      padding: 20px;
+      color: blanchedalmond;
+      
+    }
+    #dit{
+      margin-left: 30%;
+      margin-right: auto;
+      text-align:center;
+      color: #d9edb9;
+      position: fixed;
+    }
+
     #chatt{
       word-wrap: break-word;
       display: inline-block;
@@ -76,20 +89,5 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-    /* #chattt{
-      padding: 5;
-      word-wrap: break-word;
-      display: inline-block;
-      padding: 5px;
-      padding-right: 20px;
-      padding-left: 20px;
-      max-width: 70%;
-      background-color: white;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      color: black;
-      font-family: Arial, Helvetica, sans-serif;
-    } */
   </style>
 </html>

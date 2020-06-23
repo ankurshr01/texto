@@ -24,3 +24,7 @@ class chatid(models.Model):
     def __str__(self):
         return self.chatroom
 
+class partt(models.Model):
+    rom=models.ForeignKey(roomId,on_delete=models.SET_NULL, null=True)
+    chats=models.ForeignKey(username,on_delete=models.SET_NULL, null=True)
+

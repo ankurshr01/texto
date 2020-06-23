@@ -17,7 +17,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from .forms import roomenter,name,chatmsg
-from .models import roomId,username,chatid
+from .models import roomId,username,chatid,partt
 from django.http import JsonResponse
 
 def first(request):
@@ -44,12 +44,17 @@ def enterroomnumber(request):
             dtr=chatmsg(request.POST)
             request.session['user'] = user
             request.session['roomid'] = roomid
+            lop=username.objects.get(usernames=user)
+            pol=roomId.objects.get(room_name=roomid)
+            ue=partt.objects.create(rom=pol,chats=lop)
+            ue.save()
             context={
                 'usr' : usr,
                 'room' : room,
                 'forms' : forms,
                 'user' : user,
-                'dtr' : dtr
+                'dtr' : dtr,
+                'ue' : ue
             }
         return render(request,'chatroom.html',context)
 
@@ -68,17 +73,16 @@ def showing_chat(request):
             pol=roomId.objects.get(room_name=roomid)
             msg=chatid.objects.create(chatroom=mess,chatter=lop,roomname=pol)
             msg.save()
-            siz=0
             messa=chatid.objects.filter(roomname=pol)
             context={
                 'mess' : mess,
                 'messa' : messa,
                 'dtr' : dtr,
-                'siz' : siz
+                'siz' : siz,
             }
             dtr=chatmsg()
+        
         return render(request,'chatroom.html',context)
-
 
 
 def chat_sender(request):
@@ -94,14 +98,15 @@ def chat_sender(request):
     return JsonResponse({'response':True},safe= False)
 
 
-    
 def showchat(request):
     roomid=request.session['roomid']
     pol=roomId.objects.get(room_name=roomid)
     mes=chatid.objects.filter(roomname=pol)
     usr=request.session['user']
+    up=partt.objects.filter(rom=pol)
     context={
         'usr' : usr,
         'mes' : mes,
+        'up' : up,
     }
     return render(request,'fetch.html',context)
