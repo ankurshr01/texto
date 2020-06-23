@@ -1,13 +1,93 @@
 <html>
     {% load static %}
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/root.css">
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary/css/vocabulary.css">
+        <script type="text/javascript" src="https://unpkg.com/vue"></script>
+        <script type="text/javascript" src="https://unpkg.com/vue-i18n"></script>
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    </head>
+    <title>
+            Text-o
+        </title>
     <body>
+
+        <div class="header">
+            Text-o
+        </div>
+
+        <br>
+        <br>
+        <br>
         <form method="POST" action="../enterroomnumber">
             {% csrf_token %}
-            {{ form }}
-            
-            {{ forms }}
-            <button type="submit">Enter</button>
+            <div id="container">
+            <div id="left"> <span class="dp">Room Name : </span><br><br> {{ form.room_name }} </div>
+            <div id="right"> <span class="dp">Username :</span> <br><br> {{ forms.usernames }} </div>
+        </div>
+        <div class="bu"><button type="submit" class="input port"><span class="sp">Enter</span></button></div>
         </form>
 
     </body>
+
+    <style>
+        .header{
+            font-family: 'Sriracha', cursive;
+            text-align: center;
+            font-size: 50px;
+            margin-top: 50px;
+        }
+        .dp{
+            font-size: x-large;
+        }
+        .sp{
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: brown;
+            font-weight: bold;
+        }
+        .bu{
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+        }
+        .port{
+            background-color: antiquewhite;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+            color: black;
+            width: 15%;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #container{
+            width: 70%;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-column-gap: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .input{
+            height: 60px;
+            font-size: x-large;
+            color: black;
+        }
+    </style>
+
 </html>

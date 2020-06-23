@@ -10,7 +10,7 @@ class roomenter(forms.ModelForm):
         model=roomId
         fields=['room_name']
         widgets = {
-            'room_name' : forms.TextInput(attrs={' placehoder ':' Enter room number ', 'class':'room'})
+            'room_name' : forms.TextInput(attrs={' placehoder ':' Enter room number ', 'class':'input'})
         }
 
 class name(forms.ModelForm):
@@ -18,7 +18,7 @@ class name(forms.ModelForm):
         model=username
         fields=['usernames']
         widgets = {
-            'usernames' : forms.TextInput(attrs={' placehoder ':' Enter username ', 'class':'room'})
+            'usernames' : forms.TextInput(attrs={' placehoder ':' Enter username ', 'class':'input'})
         }
 
 class chatmsg(forms.ModelForm):
