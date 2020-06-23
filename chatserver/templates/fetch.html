@@ -1,24 +1,32 @@
 <html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    
+  </head>
 <body>
-  {{mess}}
+  <div id="dit">
+  {% for ur in mes.all %}
+    {% ifchanged %}{{ur.chatter}}{% endifchanged %}  
+  {% endfor %}
+</div>
+
+
   {% for chats in mes.all %}
-  {%with s=chats.chatter%}
-  {%with st=usr%}
-  {% if usr == chats.chatter %}
-  <div id="chattt">
-      <span class="col">{{chats.chatter}}</span>
-      <br> 
+  {% if request.session.user == chats.chatter|striptags %}
+  <div class="message-box-holder">
+    <div id="chattt">
       {{ chats.chatroom }}
+    </div>
   </div>
+  <!-- <div id="chattt">
+  </div> -->
   {% else %}
   <div id="chatt">
-    <span class="col">{{chats.chatter}}</span>
+      <span class="col"><i>{{chats.chatter}}</i></span>
       <br> 
       {{ chats.chatroom }}
   </div>
   {% endif %}
-  {%endwith%}
-  {%endwith%}
   <br>
  {% endfor %}
 </body>
@@ -30,27 +38,58 @@
       padding-right: 20px;
       padding-left: 20px;
       max-width: 70%;
-      background-color: aquamarine;
+      background-color: #d9edb9;
       margin-top: 10px;
       margin-bottom: 10px;
       border-radius: 10px;
       margin-left: 30px;
       color: black;
-
+      font-family: Arial, Helvetica, sans-serif;
     }
     .col{
       color: darkgoldenrod;
       font-weight: bold;
+      font-size: normal;
     }
-    #chattt{
-      padding: 10px;
+.message-box-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+#chattt {
+  
+  padding: 6px 10px;
+  position: relative;
+  padding: 5;
+  word-wrap: break-word;
+  display: inline-block;
+  padding: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+  max-width: 70%;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 30px;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+    /* #chattt{
+      padding: 5;
+      word-wrap: break-word;
+      display: inline-block;
+      padding: 5px;
+      padding-right: 20px;
+      padding-left: 20px;
+      max-width: 70%;
       background-color: white;
       margin-top: 10px;
       margin-bottom: 10px;
       border-radius: 10px;
       color: black;
-      word-wrap: break-word;
-      display: inline-block;
-    }
+      font-family: Arial, Helvetica, sans-serif;
+    } */
   </style>
 </html>
