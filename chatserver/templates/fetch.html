@@ -1,93 +1,95 @@
 <html>
-  <head>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
-    
-  </head>
-<body>
-  
-  <div id="dit">
-    <span id="poll">Users:</span>
-    {% for ur in up.all %}
-      
-      {% ifchanged %}{{ur.chats}},{% endifchanged %}
-    {% endfor %}
-  </div>
-  {% for chats in mes.all %}
-  {% if request.session.user == chats.chatter|striptags %}
-  <div class="message-box-holder">
-    <div id="chattt">
-      {{ chats.chatroom }}
-    </div>
-  </div>
-  {% else %}
-  <div id="chatt">
-      <span class="col"><i>{{chats.chatter}}</i></span>
-      <br> 
-      {{ chats.chatroom }}
-  </div>
-  {% endif %}
-  <br>
- {% endfor %}
-</body>
-  <style>
-    #poll{
-      font-size: 30px;
-      padding: 20px;
-      color: blanchedalmond;
-      
-    }
-    #dit{
-      margin-left: 30%;
-      margin-right: auto;
-      text-align:center;
-      color: #d9edb9;
-      position: fixed;
-    }
+    {% load static %}
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/root.css">
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary/css/vocabulary.css">
+        <script type="text/javascript" src="https://unpkg.com/vue"></script>
+        <script type="text/javascript" src="https://unpkg.com/vue-i18n"></script>
+        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    </head>
+    <title>
+            Text-o
+        </title>
+    <body>
 
-    #chatt{
-      word-wrap: break-word;
-      display: inline-block;
-      padding: 5;
-      padding-right: 20px;
-      padding-left: 20px;
-      max-width: 70%;
-      background-color: #d9edb9;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      margin-left: 30px;
-      color: black;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .col{
-      color: darkgoldenrod;
-      font-weight: bold;
-      font-size: normal;
-    }
-.message-box-holder {
-  width: 100%;
-  display: flex;
-  flex-flow: column;
-  align-items: flex-end;
-}
-#chattt {
-  
-  padding: 6px 10px;
-  position: relative;
-  padding: 5;
-  word-wrap: break-word;
-  display: inline-block;
-  padding: 5px;
-  padding-right: 20px;
-  padding-left: 20px;
-  color: black;
-  max-width: 70%;
-  background-color: white;
-  border-radius: 10px;
-  margin-left: 30px;
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-}
+        <div class="header">
+            Text-o
+        </div>
 
-  </style>
+        <br>
+        <br>
+        <br>
+        <form method="POST" action="../enterroomnumber">
+            {% csrf_token %}
+            <div id="container">
+            <div id="left"> <span class="dp">Room Name : </span><br><br> {{ form.room_name }} </div>
+            <div id="right"> <span class="dp">Username :</span> <br><br> {{ forms.usernames }} </div>
+        </div>
+        <div class="bu"><button type="submit" class="input port"><span class="sp">Enter</span></button></div>
+        </form>
+
+    </body>
+
+    <style>
+        .header{
+            font-family: 'Sriracha', cursive;
+            text-align: center;
+            font-size: 50px;
+            margin-top: 50px;
+        }
+        .dp{
+            font-size: x-large;
+        }
+        .sp{
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            color: brown;
+            font-weight: bold;
+        }
+        .bu{
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+        }
+        .port{
+            background-color: antiquewhite;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+            color: black;
+            width: 15%;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #container{
+            width: 70%;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-column-gap: 30px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .input{
+            height: 60px;
+            font-size: x-large;
+            color: black;
+            border-color: black;
+            border-width: 2px;
+        }
+    </style>
+
 </html>
