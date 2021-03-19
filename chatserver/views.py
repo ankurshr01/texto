@@ -17,16 +17,20 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from .forms import roomenter,name,chatmsg
-from .models import roomId,username,chatid,partt
+from .models import roomId,username,chatid,partt,ctr
 from django.http import JsonResponse
 
 def first(request):
     form=roomenter(request.POST)
     forms=name(request.POST)
+    ct=ctr.objects.get()
+    ct.counter+=1
     context={
         'form' : form,
-        'forms' : forms
+        'forms' : forms,
+        'ct' : ct,
     }
+    ct.save()
     return render(request,'home.html', context)
 
 
@@ -35,6 +39,7 @@ def enterroomnumber(request):
         form = roomenter(data=request.POST)
         forms=name(data=request.POST)
         dtr=chatmsg(request.POST)
+        
         context={}
         if forms.is_valid() and form.is_valid(): 
             roomid=form.cleaned_data['room_name']

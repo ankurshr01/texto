@@ -8,7 +8,6 @@
   <div id="dit">
     <span id="poll">Users:</span>
     {% for ur in up.all %}
-      
       {% ifchanged %}{{ur.chats}},{% endifchanged %}
     {% endfor %}
   </div>

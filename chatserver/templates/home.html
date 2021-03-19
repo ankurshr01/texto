@@ -2,16 +2,8 @@
     {% load static %}
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
-        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/root.css">
-        <link type="text/css" rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/index.css">
-        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
-        <link rel="stylesheet" href="https://unpkg.com/@creativecommons/vocabulary/css/vocabulary.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@1.0.0-beta.6/css/vocabulary.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary/css/vocabulary.css">
-        <script type="text/javascript" src="https://unpkg.com/vue"></script>
-        <script type="text/javascript" src="https://unpkg.com/vue-i18n"></script>
-        <script type="text/javascript" src="https://unpkg.com/@creativecommons/vue-vocabulary"></script>
         <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
     </head>
     <title>
@@ -26,6 +18,7 @@
         <br>
         <br>
         <br>
+
         <form method="POST" action="../enterroomnumber">
             {% csrf_token %}
             <div id="container">
@@ -33,11 +26,20 @@
             <div id="right"> <span class="dp">Username :</span> <br><br> {{ forms.usernames }} </div>
         </div>
         <div class="bu"><button type="submit" class="input port"><span class="sp">Enter</span></button></div>
-        </form>
+        <div class="cp"> Total Clicks : {{ ct.counter }}</div>
+        
+       </form>
 
     </body>
 
     <style>
+        .cp{
+            align-items: center;
+            margin-left: 45%;
+            margin-top: 30px;
+            font-size: 20px;
+            color: black;
+        }
         .header{
             font-family: 'Sriracha', cursive;
             text-align: center;

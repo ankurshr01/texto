@@ -2,6 +2,7 @@ from django.db import models
 from django.db import models
 from django import forms
 from django.conf import settings
+from django.db.models.fields import IntegerField
 from django.db.models.signals import post_save
 
 class username(models.Model):
@@ -27,4 +28,7 @@ class chatid(models.Model):
 class partt(models.Model):
     rom=models.ForeignKey(roomId,on_delete=models.SET_NULL, null=True)
     chats=models.ForeignKey(username,on_delete=models.SET_NULL, null=True)
+
+class ctr(models.Model):
+    counter=models.IntegerField(null=True)
 
