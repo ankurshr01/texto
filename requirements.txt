@@ -17,4 +17,4 @@ netifaces==0.10.4
 networkx==2.4
 notebook==6.0.3
 pytz==2019.3
-Twisted==20.3.0
+Twisted==22.10.0
